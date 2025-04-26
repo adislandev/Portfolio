@@ -1,0 +1,167 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px; /* Ajustar padding */
+  height: var(--header-height);
+  position: fixed; /* Fixar no topo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85); /* Fundo Preto semi-transparente */
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  transition: var(--transition);
+  border-bottom: 1px solid transparent; /* Adicionar borda para transição */
+}
+
+/* Adicionar estilos para quando o header estiver 'scrolled' */
+
+.logo a {
+  color: var(--color-primary);
+  font-weight: bold;
+  font-size: var(--fz-xl);
+  text-decoration: none;
+}
+
+.nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+.nav li {
+  list-style: none;
+}
+
+.nav a {
+  color: var(--color-secondary); /* Cinza médio */
+  font-size: var(--fz-sm);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 10px;
+  position: relative;
+}
+
+.nav a::before {
+    content: '0' counter(item) '.';
+    counter-increment: item 1;
+    margin-right: 5px;
+    color: var(--color-primary);
+    font-size: var(--fz-xs);
+    font-family: var(--font-mono);
+}
+
+.nav a:hover {
+  color: var(--color-primary); /* Branco no hover */
+}
+
+/* Estilos para mobile (menu hamburguer) - Adicionar depois */ 
+
+/* Adiciona sombra/borda quando scrollado */
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.95); /* Mais opaco */
+  height: 70px;
+  border-bottom: 1px solid var(--color-background-light); /* Borda cinza escura */
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7); /* Sombra escura */
+}
+
+/* Navegação Geral (base para navDesktop e navMobile) */
+.nav ul {
+  display: flex;
+  align-items: center; /* Alinhar itens */
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  counter-increment: item 1; /* Incrementar contador para cada item */
+}
+
+.nav a {
+  color: var(--color-secondary); /* Cinza médio */
+  font-size: var(--fz-sm);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 10px;
+  position: relative;
+}
+
+.nav a:hover {
+  color: var(--color-primary); /* Branco no hover */
+}
+
+/* Esconder Navegação Desktop em Telas Menores */
+.navDesktop {
+  display: flex; /* Mostrar por padrão */
+}
+
+/* Ícone do Menu Mobile (Hamburguer/X) */
+.menuIcon {
+  display: none; /* Esconder por padrão */
+  color: var(--color-primary); /* Ícone Branco */
+  font-size: 28px; /* Tamanho do ícone */
+  cursor: pointer;
+  z-index: 12; /* Acima do conteúdo do menu */
+  transition: transform 0.3s ease;
+}
+
+.menuIcon:hover {
+    transform: scale(1.1);
+}
+
+/* Navegação Mobile (Sidebar/Overlay) */
+.navMobile {
+  display: none; /* Esconder por padrão */
+  position: fixed;
+  top: 0;
+  right: -100%; /* Começa fora da tela */
+  width: min(75vw, 400px); /* Largura responsiva */
+  height: 100vh;
+  background-color: var(--color-background-light); /* Fundo Cinza Escuro */
+  box-shadow: -10px 0px 30px -15px rgba(0, 0, 0, 0.7); /* Sombra escura */
+  z-index: 11; /* Abaixo do ícone X, acima do resto */
+  transition: right 0.3s ease-in-out;
+  padding-top: var(--header-height); /* Espaço no topo */
+}
+
+.navMobile.open {
+  right: 0; /* Entra na tela */
+}
+
+.navMobile ul {
+  flex-direction: column; /* Itens em coluna */
+  justify-content: center; /* Centralizar verticalmente */
+  align-items: center; /* Centralizar horizontalmente */
+  height: 100%;
+  gap: 30px; /* Espaçamento entre links */
+}
+
+.navMobile li {
+    counter-increment: item 1; /* Garantir contagem correta */
+}
+
+.navMobile a {
+  font-size: var(--fz-lg); /* Fonte maior */
+  color: var(--color-secondary); /* Cinza médio */
+  padding: 15px 20px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Media Query para ativar o Menu Mobile */
+@media (max-width: 768px) {
+  .navDesktop {
+    display: none; /* Esconder nav desktop */
+  }
+  .menuIcon {
+    display: block; /* Mostrar ícone hamburguer */
+  }
+  .navMobile {
+     display: flex; /* Habilitar display para transição funcionar */
+  }
+  .header {
+    padding: 0 25px; /* Reduzir padding no mobile */
+  }
+} 

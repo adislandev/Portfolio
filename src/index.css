@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap');
+
+/* Reset CSS básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Rolagem suave */
+}
+
+body {
+  font-family: 'Poppins', sans-serif; /* Usar Poppins como fonte principal (precisará ser importada) */
+  line-height: 1.6;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* Variáveis Globais - Tema Preto e Branco */
+:root {
+  --color-background: #000000;       /* Preto */
+  --color-background-light: #1e1e1e; /* Cinza escuro (para cards/elementos) */
+  --color-primary: #ffffff;         /* Branco (cor destaque principal) */
+  --color-secondary: #a0a0a0;      /* Cinza médio (texto secundário/links) */
+  --color-text: #e0e0e0;           /* Cinza claro (texto principal) */
+  --color-headings: #ffffff;       /* Branco (para títulos principais) */
+  --color-accent-yellow: #ffc107;    /* Amarelo para botões */
+  --color-button-text: #111111;    /* Texto escuro para botões amarelos */
+
+  --font-sans: 'Poppins', sans-serif;
+  --font-mono: 'Fira Code', monospace; /* Fonte mono para código (precisa importar) */
+
+  --fz-xs: 13px;
+  --fz-sm: 14px;
+  --fz-md: 16px;
+  --fz-lg: 18px;
+  --fz-xl: 20px;
+  --fz-xxl: 22px;
+  --fz-heading: 32px;
+
+  --border-radius: 4px;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  --header-height: 100px; /* Altura do cabeçalho */
+}

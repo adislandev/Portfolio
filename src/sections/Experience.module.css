@@ -1,0 +1,142 @@
+.experience {
+  padding: 100px 0;
+  max-width: 700px; /* Largura mais contida para as abas */
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  gap: 30px;
+}
+
+/* Abas Laterais */
+.tabs {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 150px; /* Largura fixa para as abas */
+  flex-shrink: 0; /* Não encolher */
+}
+
+.tabButton {
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid var(--color-background-light); /* Borda Cinza Escuro */
+  padding: 10px 15px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--fz-sm);
+  color: var(--color-secondary); /* Cinza médio */
+  cursor: pointer;
+  transition: var(--transition);
+  height: 42px; /* Altura fixa para cálculo do highlight */
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  background-color: rgba(255, 255, 255, 0.03); /* Branco muito sutil */
+  color: var(--color-primary); /* Branco */
+}
+
+.tabButton.active {
+  color: var(--color-primary); /* Branco */
+  background-color: rgba(255, 255, 255, 0.05); /* Branco um pouco mais visível */
+  border-left-color: var(--color-primary); /* Borda Branca */
+}
+
+/* Barra de destaque que se move */
+.highlight {
+  position: absolute;
+  top: 0;
+  left: -2px; /* Alinhar com a borda */
+  width: 2px;
+  height: 42px; /* Mesma altura do botão */
+  background-color: var(--color-primary); /* Highlight Branco */
+  border-radius: var(--border-radius);
+  transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  z-index: 10;
+}
+
+/* Conteúdo da Aba */
+.content {
+  flex-grow: 1; /* Ocupar espaço restante */
+  padding-left: 10px; /* Pequeno espaçamento */
+}
+
+.role {
+  font-size: var(--fz-xxl);
+  font-weight: 500;
+  color: var(--color-headings); /* Branco */
+  margin-bottom: 5px;
+}
+
+.company {
+  color: var(--color-primary); /* Branco */
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  color: var(--color-secondary); /* Cinza médio */
+  margin-bottom: 25px;
+}
+
+.descriptionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--fz-lg);
+  color: var(--color-text); /* Cinza claro */
+}
+
+.descriptionList li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.descriptionList li::before {
+  content: '▹';
+  position: absolute;
+  left: 0px;
+  color: var(--color-primary); /* Marcador Branco */
+}
+
+/* Media Query para layout de abas no topo em mobile */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column; /* Empilhar */
+    gap: 20px;
+  }
+  .tabs {
+    flex-direction: row; /* Abas em linha */
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal se necessário */
+    border-bottom: 1px solid var(--color-background-light); /* Borda Cinza Escuro */
+    margin-bottom: 20px;
+  }
+  .tabButton {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px;
+    text-align: center;
+    min-width: 120px; /* Largura mínima para cada aba */
+  }
+  .tabButton.active {
+    border-left: none;
+    border-bottom-color: var(--color-primary); /* Borda Branca */
+    background-color: transparent;
+    color: var(--color-primary); /* Branco */
+  }
+  .highlight {
+     /* Mudar para highlight inferior, ajustar com JS ou esconder */
+     display: none; /* Simplificando: esconder highlight */
+  }
+  .content {
+    padding-left: 0;
+  }
+  .experience {
+    padding: 80px 0;
+  }
+} 
