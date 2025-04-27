@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32">
+  <style>
+    path {
+      fill: #ffffff; /* Cor branca */
+      stroke: #ffffff; /* Borda branca */
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    @media (prefers-color-scheme: light) {
+      path {
+        fill: #1e1e1e; /* Cor cinza escuro para tema claro */
+        stroke: #1e1e1e;
+      }
+    }
+  </style>
+  <path d="M30 20 L10 50 L30 80 M70 20 L90 50 L70 80 M40 15 L60 85"/>
+</svg> 

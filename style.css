@@ -1,0 +1,987 @@
+/* Reset CSS básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* Variáveis Globais - Tema Preto e Branco */
+:root {
+  --color-background: #000000;       /* Preto */
+  --color-background-light: #1e1e1e; /* Cinza escuro */
+  --color-primary: #ffffff;         /* Branco (destaque principal) */
+  --color-secondary: #a0a0a0;      /* Cinza médio */
+  --color-text: #e0e0e0;           /* Cinza claro */
+  --color-headings: #ffffff;       /* Branco */
+  --color-accent-yellow: #ffc107;    /* Amarelo para botões */
+  --color-button-text: #111111;    /* Texto escuro para botões amarelos */
+
+  --font-sans: 'Poppins', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+
+  --fz-xs: 13px;
+  --fz-sm: 14px;
+  --fz-md: 16px;
+  --fz-lg: 18px;
+  --fz-xl: 20px;
+  --fz-xxl: 22px;
+  --fz-heading: 32px;
+
+  --border-radius: 4px;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  --header-height: 100px; /* Ajustar conforme necessário */
+  --section-padding: 100px 0; /* Padding vertical padrão das seções */
+}
+
+/* Estilos gerais para seções */
+main section {
+  padding: var(--section-padding);
+  max-width: 1000px; /* Largura máxima padrão */
+  margin-left: auto;
+  margin-right: auto;
+  /* Adicionar padding lateral para conteúdo não colar nas bordas */
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+/* Container Geral */
+.container {
+    width: 100%;
+    max-width: 1140px; /* Largura máxima para o conteúdo interno */
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- Header Styles --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo Preto semi-transparente */
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: height 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header.scrolled {
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.95);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    color: var(--color-primary); /* Branco */
+    font-weight: 700;
+    font-size: var(--fz-xl);
+    text-decoration: none;
+}
+
+/* Navegação Desktop */
+.nav-desktop ul {
+    display: flex;
+    gap: 30px; /* Espaçamento entre links */
+}
+
+.nav-desktop a {
+    color: var(--color-secondary);
+    font-size: var(--fz-sm);
+    padding: 5px 0;
+    position: relative;
+    transition: color var(--transition);
+}
+
+.nav-desktop a:hover {
+    color: var(--color-primary);
+}
+
+/* Esconder nav desktop em telas menores */
+@media (max-width: 768px) {
+    .nav-desktop {
+        display: none;
+    }
+}
+
+/* Botão Hamburguer */
+.menu-toggle {
+    display: none; /* Escondido por padrão */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 110; /* Acima do menu mobile */
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    background-color: var(--color-primary); /* Branco */
+    height: 2px;
+    width: 25px;
+    border-radius: 1px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hamburger::before {
+    transform: translateY(-8px);
+}
+
+.hamburger::after {
+    transform: translateY(8px);
+}
+
+/* Estilo do Hamburguer quando o menu está aberto */
+.menu-toggle.active .hamburger {
+    background-color: transparent; /* Barra do meio some */
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: translateY(0) rotate(45deg);
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: translateY(0) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostra em mobile */
+    }
+}
+
+/* Navegação Mobile */
+.nav-mobile {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Começa fora da tela */
+    width: min(75vw, 300px); 
+    height: 100vh;
+    background-color: var(--color-background-light); /* Fundo cinza escuro */
+    box-shadow: -5px 0px 20px rgba(0, 0, 0, 0.5);
+    z-index: 105; /* Abaixo do botão de fechar */
+    padding: var(--header-height) 30px 30px;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-mobile.active {
+    right: 0; /* Entra na tela */
+}
+
+.nav-mobile ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px; /* Espaçamento maior */
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.nav-mobile a {
+    color: var(--color-secondary);
+    font-size: var(--fz-lg);
+    padding: 10px;
+    display: block;
+    transition: color var(--transition);
+}
+
+.nav-mobile a:hover {
+    color: var(--color-primary);
+}
+
+/* Efeito para escurecer body quando menu mobile está aberto */
+body.menu-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 100; /* Abaixo do menu mobile, acima do conteúdo */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+body.menu-open::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Fim Header Styles --- */
+
+/* --- Hero Section Styles --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative; /* Para elementos laterais */
+    padding-top: var(--header-height); /* Compensar header */
+    /* Ajustar max-width herdado ou remover */
+    max-width: none; /* Permitir ocupar largura total para posicionar laterais */
+    padding-left: 150px; /* Padding maior no desktop */
+    padding-right: 150px;
+}
+
+.hero-content {
+    max-width: 600px; /* Limitar largura do conteúdo textual */
+}
+
+.hero-name {
+    color: var(--color-headings); /* Branco */
+    font-size: clamp(45px, 8vw, 80px); 
+    font-weight: 700;
+    margin-bottom: 5px; 
+    line-height: 1.1;
+}
+
+.hero-title {
+    color: var(--color-secondary); /* Cinza médio */
+    font-size: clamp(40px, 7vw, 70px); 
+    font-weight: 600; 
+    margin-bottom: 30px; 
+    line-height: 1.0;
+}
+
+.hero-description {
+    color: var(--color-text); /* Cinza claro */
+    font-size: var(--fz-lg);
+    margin-bottom: 50px;
+    max-width: 540px;
+    line-height: 1.5; 
+}
+
+/* Botão (reusar/criar classe genérica .btn) */
+.btn {
+    display: inline-flex; 
+    align-items: center;
+    gap: 0.5rem; 
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem; 
+    font-size: var(--fz-sm);
+    font-family: var(--font-sans); 
+    font-weight: 600; 
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.btn-primary {
+    color: var(--color-button-text); 
+    background-color: var(--color-accent-yellow); 
+    border-color: var(--color-accent-yellow); 
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #e0ac06; 
+    border-color: #e0ac06;
+    color: var(--color-button-text); 
+    outline: none;
+    box-shadow: 0 0 15px 5px rgba(255, 193, 7, 0.5); 
+    animation: buttonWiggle 0.4s ease-in-out infinite; 
+}
+
+/* Keyframes da animação (definir uma vez globalmente) */
+@keyframes buttonWiggle {
+  0% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+  100% { transform: rotate(-1deg); }
+}
+
+/* Elementos Laterais Fixos */
+.hero-social,
+.hero-email {
+    display: none; /* Escondido por padrão, mostrar em desktop */
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 40px; /* Largura da coluna lateral */
+}
+
+.hero-social {
+    left: 40px;
+}
+
+.hero-email {
+    right: 40px;
+}
+
+.hero-social ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-social ul::after,
+.hero-email::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 20px auto 0; /* Espaço após último item */
+    background-color: var(--color-secondary);
+}
+
+.hero-social a,
+.hero-email a {
+    display: inline-block; /* Para aplicar padding/hover */
+    padding: 10px;
+    color: var(--color-secondary);
+    transition: var(--transition);
+    /* Adicionar estilos para ícones quando inseridos */
+}
+
+.hero-social a:hover,
+.hero-email a:hover {
+    color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+.hero-email a {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    letter-spacing: 0.1em;
+    writing-mode: vertical-rl; /* Texto vertical */
+    margin-bottom: 20px; /* Espaço antes da linha */
+    padding: 10px 5px; /* Ajustar padding */
+}
+
+/* Media Queries para Hero e Laterais */
+@media (min-width: 768px) {
+    .hero-social, .hero-email {
+        display: block;
+    }
+}
+
+@media (max-width: 1080px) {
+    .hero {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .hero-social { left: 20px; }
+    .hero-email { right: 20px; }
+}
+
+@media (max-width: 767px) {
+    .hero {
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: calc(var(--header-height) + 30px); /* Mais espaço topo mobile */
+        min-height: auto; /* Altura automática */
+        padding-bottom: 80px; /* Espaço inferior */
+        align-items: center; /* Centralizar conteúdo no mobile */
+        text-align: center;
+    }
+    .hero-content {
+        max-width: 100%;
+    }
+    .hero-name, .hero-title {
+        font-size: 40px; /* Ajustar tamanho fonte mobile */
+    }
+    .hero-description {
+        font-size: var(--fz-md);
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* --- Fim Hero Styles --- */
+
+/* --- Título de Seção Genérico --- */
+.section-title {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 10px 0 40px;
+  width: 100%;
+  white-space: nowrap;
+  font-size: clamp(26px, 5vw, var(--fz-heading));
+  color: var(--color-headings); /* Branco */
+  font-weight: 600;
+}
+
+.section-title span { /* O texto do título */
+    margin-right: 15px; /* Espaço antes da linha */
+}
+
+.section-title::after { /* Linha */
+  content: '';
+  display: block;
+  position: relative;
+  top: -1px; /* Ajuste fino vertical */
+  width: 300px; /* Largura padrão da linha */
+  height: 1px;
+  background-color: var(--color-background-light); /* Cinza escuro */
+}
+
+
+
+.about-content {
+  display: grid;
+  grid-template-columns: 3fr 2fr; /* Dividir em texto e imagem */
+  gap: 50px;
+  align-items: flex-start; /* Alinhar itens no topo */
+}
+
+.about-text p {
+  color: var(--color-text); /* Cinza claro */
+  margin-bottom: 15px;
+  font-size: var(--fz-lg); 
+  line-height: 1.5;
+}
+
+.about-text strong {
+    color: var(--color-primary); /* Branco (destaque) */
+    font-weight: 500;
+}
+
+.skills-list,
+.certifications-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: 0px 10px;
+  padding: 0;
+  margin: 20px 0 0 0;
+  overflow: hidden;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--fz-sm);
+  color: var(--color-text); /* Cinza claro */
+}
+
+.skills-list li::before,
+.certifications-list li::before {
+  content: '▹'; /* Marcador */
+  position: absolute;
+  left: 0px;
+  color: var(--color-primary); /* Branco */
+  font-size: var(--fz-sm);
+  line-height: 12px;
+}
+
+.skills-list li,
+.certifications-list li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.certifications-list {
+    margin-top: 10px; 
+}
+
+/* Estilos para a imagem */
+.about-image {
+  position: relative;
+  max-width: 300px;
+  height: 300px; 
+  border: 2px solid var(--color-primary); /* Borda branca */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  justify-self: center; /* Centralizar imagem no grid */
+}
+
+.about-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--border-radius);
+  object-fit: cover; 
+}
+
+/* Media Queries para About */
+@media (max-width: 1080px) {
+    .section-title::after {
+        width: 200px; /* Linha menor */
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title::after {
+        width: 100px; /* Linha ainda menor */
+    }
+    .about-content {
+        grid-template-columns: 1fr; /* Uma coluna */
+        gap: 40px;
+    }
+    .about-image {
+        order: -1; /* Mover imagem para cima */
+        max-width: 250px;
+        height: 250px;
+        margin: 0 auto 40px; /* Adicionar margem inferior */
+    }
+    .skills-list,
+    .certifications-list {
+        grid-template-columns: 1fr; /* Uma coluna para listas */
+    }
+}
+
+@media (max-width: 600px) {
+    .section-title::after {
+        display: none; /* Esconder linha em telas muito pequenas */
+    }
+}
+
+/* --- Fim About Styles --- */
+
+
+
+.services-grid {
+  display: grid;
+  /* Cria colunas de no mínimo 280px, preenchendo o espaço */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.service-item {
+  background-color: var(--color-background-light); /* Fundo cinza escuro */
+  padding: 2.5rem 2rem;
+  border-radius: var(--border-radius);
+  text-align: left; 
+  transition: var(--transition);
+  border: 1px solid var(--color-background-light);
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary); /* Borda branca no hover */
+}
+
+.service-icon {
+  color: var(--color-primary); /* Ícone Branco */
+  margin-bottom: 20px;
+  /* Estilizar o tamanho do ícone quando adicionarmos o SVG/fonte */
+  /* Ex: width: 40px; height: 40px; */
+}
+
+/* Linha opcional abaixo do ícone */
+.service-icon::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-primary);
+    margin-top: 15px;
+}
+
+.service-title {
+  color: var(--color-headings); /* Título Branco */
+  font-size: var(--fz-xl);
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.service-description {
+  color: var(--color-text); /* Descrição Cinza claro */
+  font-size: var(--fz-md);
+  line-height: 1.6;
+}
+
+/* Media Query para Services (ajustar grid se necessário) */
+@media (max-width: 768px) {
+ 
+}
+
+/* --- Fim Services Styles --- */
+
+/* --- Experience Section Styles --- */
+.experience {
+    max-width: 700px; /* Seção um pouco mais estreita */
+}
+
+.experience-container {
+  display: flex;
+  gap: 30px;
+}
+
+/* Abas (Lista de botões) */
+.experience-tabs {
+  position: relative; /* Para o highlight futuro */
+  display: flex;
+  flex-direction: column;
+  width: 150px; 
+  flex-shrink: 0; 
+}
+
+.tab-button {
+  background-color: transparent;
+  border: none;
+  border-left: 2px solid var(--color-background-light); /* Borda Cinza Escuro */
+  padding: 10px 15px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--fz-sm);
+  color: var(--color-secondary); /* Cinza médio */
+  cursor: pointer;
+  transition: var(--transition);
+  height: 42px; /* Altura fixa para highlight */
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--color-primary);
+}
+
+.tab-button.active {
+  color: var(--color-primary); /* Branco */
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left-color: var(--color-primary);
+}
+
+/* Futuro highlight - pode ser adicionado via JS ou CSS mais complexo */
+/* .experience-tabs::after { ... } */
+
+/* Conteúdo (Painéis) */
+.experience-content {
+  flex-grow: 1; 
+}
+
+/* Esconde painéis inativos */
+.tab-panel {
+  display: none; 
+}
+
+/* Mostra painel ativo */
+.tab-panel.active {
+  display: block;
+}
+
+.job-title {
+  font-size: var(--fz-xxl);
+  font-weight: 500;
+  color: var(--color-headings); /* Branco */
+  margin-bottom: 5px;
+}
+
+.job-title .company {
+  color: var(--color-primary); /* Branco */
+}
+
+.job-period {
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  color: var(--color-secondary); /* Cinza médio */
+  margin-bottom: 25px;
+}
+
+.job-description {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: var(--fz-lg);
+  color: var(--color-text); /* Cinza claro */
+}
+
+.job-description li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.job-description li::before {
+  content: '▹';
+  position: absolute;
+  left: 0px;
+  color: var(--color-primary); /* Marcador Branco */
+}
+
+/* Media Query para layout mobile */
+@media (max-width: 600px) {
+  .experience-container {
+    flex-direction: column; /* Empilhar */
+  }
+  .experience-tabs {
+    flex-direction: row; /* Abas em linha */
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal */
+    border-bottom: 1px solid var(--color-background-light); 
+    margin-bottom: 25px;
+  }
+  .tab-button {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px;
+    text-align: center;
+    min-width: 120px;
+    height: auto; /* Altura automática */
+  }
+  .tab-button.active {
+    border-left: none;
+    border-bottom-color: var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
+  }
+}
+
+/* --- Fim Experience Styles --- */
+
+/* --- Projects Section Styles --- */
+
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 50px;
+}
+
+.project-item {
+  transition: var(--transition);
+  display: flex; /* Para o footer ficar no final */
+  flex-direction: column;
+  background-color: var(--color-background-light); /* Fundo cinza escuro */
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.7); /* Sombra escura */
+  overflow: hidden; /* Para caso use imagem de fundo no futuro */
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.9); /* Sombra mais forte */
+}
+
+.project-content {
+  padding: 2rem 1.75rem;
+  flex-grow: 1; /* Faz o conteúdo ocupar espaço */
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.project-icon {
+  color: var(--color-primary); /* Cor do ícone de pasta */
+  /* Estilizar tamanho quando tiver ícone */
+  /* width: 40px; height: 40px; */
+}
+
+.project-links a {
+  color: var(--color-secondary);
+  padding: 5px;
+  margin-left: 10px;
+  transition: var(--transition);
+}
+
+.project-links a:hover {
+  color: var(--color-primary);
+}
+
+/* Estilo para ícones dentro dos links */
+.project-links a svg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle; /* Alinhar ícone com texto adjacente se houver */
+}
+
+.project-title {
+  font-size: var(--fz-xl); /* Pouco menor que o da Experience */
+  color: var(--color-headings);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.project-description p {
+  color: var(--color-text);
+  font-size: var(--fz-md);
+  line-height: 1.5;
+}
+
+.project-footer {
+  padding: 1rem 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha separadora sutil */
+}
+
+.project-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  color: var(--color-secondary);
+}
+
+/* --- Fim Projects Styles --- */
+
+/* --- Contact Section Styles --- */
+.contact {
+  max-width: 600px; /* Seção mais estreita */
+  text-align: center; /* Centralizar título e botão */
+  /* Herdando padding vertical geral */
+}
+
+.contact .section-title {
+    /* Ajustar margem se necessário ou remover linha */
+    margin-bottom: 30px;
+}
+.contact .section-title::after {
+    display: none; /* Esconder linha no título do contato */
+}
+
+.contact-subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--fz-md);
+  color: var(--color-primary); /* Branco */
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.contact-description {
+  color: var(--color-text); /* Cinza claro */
+  font-size: var(--fz-lg);
+  line-height: 1.5;
+  margin-bottom: 50px;
+}
+
+/* Formulário */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left; /* Alinhar labels à esquerda */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: var(--color-secondary); /* Cinza médio */
+  margin-bottom: 5px;
+  font-size: var(--fz-sm);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  background-color: var(--color-background-light); /* Cinza Escuro */
+  border: 1px solid var(--color-background-light); /* Borda sutil */
+  border-radius: var(--border-radius);
+  padding: 12px 15px;
+  color: var(--color-text); /* Texto Cinza claro */
+  font-size: var(--fz-md);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-primary); /* Borda Branca */
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15); /* Sombra Branca suave */
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-button {
+  margin-top: 20px;
+  align-self: center; /* Centralizar botão */
+  /* Herda estilos de .btn e .btn-primary */
+}
+
+/* --- Fim Contact Styles --- */
+
+/* --- Footer Styles --- */
+.footer {
+  padding: 40px 20px 20px;
+  text-align: center;
+  font-family: var(--font-sans);
+  color: var(--color-secondary); /* Cinza médio */
+  border-top: 1px solid var(--color-background-light); /* Linha cinza escura */
+  margin-top: 100px;
+}
+
+.footer-content {
+  margin-bottom: 30px;
+}
+
+.footer-logo-name {
+  color: var(--color-headings); /* Branco */
+  font-size: var(--fz-xl);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  font-size: var(--fz-md);
+  color: var(--color-text); /* Cinza claro */
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.footer-copyright {
+  font-family: var(--font-mono);
+  font-size: var(--fz-xs);
+  color: var(--color-secondary); /* Cinza médio */
+}
+
+/* --- Fim Footer Styles --- */ 

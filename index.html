@@ -1,16 +1,317 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adislan Fernandes - Desenvolvedor Web</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+  <!-- Caminho atualizado para a pasta assets -->
+
+  <!-- Google Fonts (Poppins e Fira Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+
+  <!-- Link para o CSS -->
+  <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+
+  <header id="header" class="header">
+    <div class="container">
+      <a href="#" class="logo">AdislanDev</a>
+
+      <!-- Navegação Desktop -->
+      <nav class="nav-desktop">
+        <ul>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#experience">Experiência</a></li>
+          <li><a href="#projects">Projetos</a></li>
+          <li><a href="#contact">Contato</a></li>
+          <!-- Botão Currículo pode vir aqui -->
+        </ul>
+      </nav>
+
+      <!-- Botão Hamburguer (para mobile) -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+        <span class="hamburger"></span>
+      </button>
+
+      <!-- Navegação Mobile (ficará oculta inicialmente) -->
+      <nav class="nav-mobile" id="nav-mobile">
+        <ul>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#services">Serviços</a></li>
+          <li><a href="#experience">Experiência</a></li>
+          <li><a href="#projects">Projetos</a></li>
+          <li><a href="#contact">Contato</a></li>
+          <!-- Botão Currículo pode vir aqui -->
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <!-- Links Sociais Laterais (fixos) -->
+      <div class="hero-social">
+        <ul>
+          <li><a href="https://github.com/adislandev" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><!-- Ícone GitHub aqui --></a></li>
+          <li><a href="https://www.linkedin.com/in/adislan-fernandes-66071637" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><!-- Ícone LinkedIn aqui --></a></li>
+        </ul>
+      </div>
+
+      <!-- Conteúdo Principal -->
+      <div class="hero-content">
+        <h1 class="hero-name">Adislan Fernandes.</h1>
+        <h2 class="hero-title">Desenvolvedor Web Full-Stack.</h2>
+        <p class="hero-description">
+          Desenvolvo aplicações web modernas, performáticas e sob medida,
+          focadas em otimizar seus processos, engajar seus usuários e
+          impulsionar seus resultados online.
+        </p>
+        <a href="#contact" class="btn btn-primary hero-cta">
+          <!-- Ícone aqui (opcional) --> Vamos Conversar?
+        </a>
+      </div>
+
+      <!-- Link de Email Lateral (fixo) -->
+      <div class="hero-email">
+        <a href="mailto:seu-email@exemplo.com">adislanconsultoria@gmail.com</a>
+        <!-- Substituir pelo seu email real! -->
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <!-- Título da Seção -->
+      <h2 class="section-title"><span>Sobre Mim</span></h2>
+
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Olá! Sou Adislan Fernandes, um Desenvolvedor Web Full-Stack e entusiasta de tecnologia,
+            com vasta experiência em docência e coordenação educacional.
+          </p>
+          <p>
+            Possuo graduação em <strong>Sistemas para Internet</strong> e pós-graduações em
+            <strong>Desenvolvimento de Sistemas Web</strong> e <strong>Análise e Desenvolvimento Web</strong>,
+            complementadas por certificações Google (Educator L1/L2, Trainer) e Fortinet (NSE 1/3).
+          </p>
+          <p>
+            Minha paixão é combinar desenvolvimento de software com educação, criando soluções web impactantes e
+            capacitando pessoas através da tecnologia. Atualmente, meu foco está em aprimorar minhas habilidades em:
+          </p>
+          <ul class="skills-list">
+            <li>React (Vite)</li>
+            <li>Node.js</li>
+            <li>MySQL</li>
+            <li>JavaScript (ES6+)</li>
+            <li>HTML5 & CSS3</li>
+            <li>Git & GitHub</li>
+          </ul>
+          <p>Minhas principais certificações incluem:</p>
+          <ul class="certifications-list">
+            <li>Google Certified Educator L1</li>
+            <li>Google Certified Educator L2</li>
+            <li>Google Certified Trainer</li>
+            <li>Fortinet NSE 1 Network Security Associate</li>
+            <li>Fortinet NSE 3 Network Security Associate</li>
+          </ul>
+        </div>
+        <div class="about-image">
+          <!-- Usar o caminho relativo à raiz para imagens -->
+          <img src="assets/adislanperfil.jpg" alt="Foto de perfil de Adislan Fernandes">
+          <!-- Caminho atualizado para a pasta assets -->
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <h2 class="section-title"><span>O Que Eu Faço</span></h2>
+
+      <div class="services-grid">
+        <!-- Item 1: Sites -->
+        <div class="service-item">
+          <div class="service-icon"><!-- Ícone Monitor aqui --></div>
+          <h3 class="service-title">Sites Institucionais & Blogs</h3>
+          <p class="service-description">
+            Desenvolvo sites utilizando React com Vite para interatividade moderna, ou HTML, CSS e JavaScript puro para sites mais leves como portfólios e blogs. Todos com design atraente e totalmente responsivo.
+          </p>
+        </div>
+
+        <!-- Item 2: Sistemas Web -->
+        <div class="service-item">
+          <div class="service-icon"><!-- Ícone Código aqui --></div>
+          <h3 class="service-title">Sistemas Web</h3>
+          <p class="service-description">
+            Desenvolvimento de aplicações web completas e personalizadas, desde o frontend com React até o backend com Node.js e bancos de dados como MySQL. Foco em performance, segurança e escalabilidade.
+          </p>
+        </div>
+
+        <!-- Item 3: Landing Pages -->
+        <div class="service-item">
+          <div class="service-icon"><!-- Ícone Layout aqui --></div>
+          <h3 class="service-title">Landing Pages</h3>
+          <p class="service-description">
+            Criação de landing pages otimizadas para conversão, com design moderno e responsivo, focadas em apresentar produtos, serviços ou capturar leads de forma eficaz.
+          </p>
+        </div>
+        <!-- Adicionar mais itens se necessário -->
+      </div>
+    </section>
+
+    <section id="experience" class="experience">
+      <h2 class="section-title"><span>Onde Trabalhei</span></h2>
+
+      <div class="experience-container">
+        <!-- Lista de Abas (Empresas) -->
+        <div class="experience-tabs" role="tablist" aria-label="Experiências profissionais">
+          <button class="tab-button active" role="tab" aria-selected="true" aria-controls="panel-0" data-tab="0">UNISAPIENS</button>
+          <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-1" data-tab="1">SAPIENS</button>
+          <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-2" data-tab="2">IFRO</button>
+          <button class="tab-button" role="tab" aria-selected="false" aria-controls="panel-3" data-tab="3">IDEP</button>
+          <!-- Adicionar highlight visual via CSS/JS -->
+        </div>
+
+        <!-- Painéis de Conteúdo -->
+        <div class="experience-content">
+          <!-- Painel 0: UNISAPIENS -->
+          <div class="tab-panel active" id="panel-0" role="tabpanel" tabindex="0" data-panel="0">
+            <h3 class="job-title">Professor (Ensino Superior) <span class="company">@ UNISAPIENS</span></h3>
+            <p class="job-period">Presente</p> <!-- Ajustar período -->
+            <ul class="job-description">
+              <li>Leciono disciplinas na área de tecnologia para cursos de graduação.</li>
+              <li>Oriento projetos e trabalhos acadêmicos.</li>
+            </ul>
+          </div>
+
+          <!-- Painel 1: SAPIENS -->
+          <div class="tab-panel" id="panel-1" role="tabpanel" tabindex="0" hidden data-panel="1">
+            <h3 class="job-title">Coordenador de Tecnologias Educacionais <span class="company">@ SAPIENS</span></h3>
+            <p class="job-period">Ano - Ano</p> <!-- Ajustar período -->
+            <ul class="job-description">
+              <li>Responsável pela implementação e gestão de tecnologias educacionais.</li>
+              <li>Desenvolvo e ministro formações para professores sobre ferramentas digitais.</li>
+              <li>Presto suporte técnico e pedagógico para a comunidade escolar.</li>
+            </ul>
+          </div>
+
+          <!-- Painel 2: IFRO -->
+          <div class="tab-panel" id="panel-2" role="tabpanel" tabindex="0" hidden data-panel="2">
+            <h3 class="job-title">Professor (Cursos Técnicos) <span class="company">@ IFRO</span></h3>
+            <p class="job-period">Ano - Ano</p> <!-- Ajustar período -->
+            <ul class="job-description">
+              <li>Ministrei aulas de Lógica de Programação, Redes de Computadores e Protocolos.</li>
+              <li>Adaptei materiais didáticos para o contexto técnico.</li>
+            </ul>
+          </div>
+
+          <!-- Painel 3: IDEP -->
+          <div class="tab-panel" id="panel-3" role="tabpanel" tabindex="0" hidden data-panel="3">
+            <h3 class="job-title">Professor de Informática / Programador Web <span class="company">@ IDEP</span></h3>
+            <p class="job-period">Ano - Ano</p> <!-- Ajustar período -->
+            <ul class="job-description">
+              <li>Lecionei informática básica e avançada.</li>
+              <li>Desenvolvi e mantive sistemas web internos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <h2 class="section-title"><span>Meus Projetos</span></h2>
+
+      <ul class="projects-grid">
+        <!-- Projeto 1: Sistema de Gestão -->
+        <li class="project-item">
+          <div class="project-content">
+            <header class="project-header">
+              <div class="project-icon"><!-- Ícone Pasta aqui --></div>
+              <div class="project-links">
+                <a href="https://github.com/adislandev/Sistema-de-Gestao-de-Membro" target="_blank" rel="noopener noreferrer" aria-label="GitHub Link"><!-- Ícone GitHub aqui --></a>
+                <!-- <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Live demo"> <!- Ícone Link Externo aqui -></a> -->
+              </div>
+            </header>
+            <h3 class="project-title">Sistema de Gestão de Membros (IEQ)</h3>
+            <div class="project-description">
+              <p>
+                Sistema web full-stack para gerenciamento de membros, departamentos e células da igreja, com autenticação JWT, CRUDs completos, controle de acesso e dashboard de resumo.
+              </p>
+            </div>
+          </div>
+          <footer class="project-footer">
+            <ul class="project-tech-list">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MySQL</li>
+              <li>JWT</li>
+              <li>Argon2</li>
+              <li>Bootstrap</li>
+            </ul>
+          </footer>
+        </li>
+
+        <!-- Adicionar mais <li class="project-item"> aqui para outros projetos -->
+
+      </ul>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2 class="section-title"><span>Qual o Próximo Passo?</span></h2>
+
+      <h3 class="contact-subtitle">Entre em Contato</h3>
+      <p class="contact-description">
+        Estou sempre aberto a novas oportunidades e colaborações. Se você tem alguma pergunta,
+        proposta ou apenas quer dizer um "oi", sinta-se à vontade para me enviar uma mensagem!
+        Farei o possível para responder o mais rápido possível.
+      </p>
+
+      <form class="contact-form" action="https://formspree.io/f/meogorqj" method="POST">
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <!-- Campo oculto para evitar spam (honeypot) -->
+        <input type="text" name="_gotcha" style="display: none;">
+
+        <button type="submit" class="btn btn-primary contact-button">
+          <!-- Ícone aqui --> Enviar Mensagem
+        </button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="footer-content">
+      <div class="footer-logo-name">AdislanDev</div>
+      <div class="footer-tagline">
+        Especialista em desenvolvimento web moderno.
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <!-- Será preenchido com JS -->
+    </div>
+    <!-- Adicionar links sociais aqui se desejar -->
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
